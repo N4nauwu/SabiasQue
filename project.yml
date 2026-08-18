@@ -1,0 +1,42 @@
+name: SabiasQue
+options:
+  bundleIdPrefix: com.nana.sabiasque
+  deploymentTarget:
+    iOS: "16.0"
+
+targets:
+  SabiasQue:
+    type: application
+    platform: iOS
+    sources: [Sources]
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.nana.sabiasque.app
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
+
+  SabiasQueUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nana.sabiasque.uitests
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGNING_REQUIRED: NO
+        CODE_SIGNING_ALLOWED: NO
+    dependencies:
+      - target: SabiasQue
+
+schemes:
+  SabiasQue:
+    build:
+      targets:
+        SabiasQue: all
+        SabiasQueUITests: [test]
+    test:
+      targets:
+        - SabiasQueUITests
