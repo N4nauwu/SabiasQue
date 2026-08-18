@@ -1,5 +1,5 @@
 #import "SceneDelegate.h"
-#import "ViewController.h"
+#import "InicioViewController.h"
 
 @interface SceneDelegate ()
 @end
@@ -9,7 +9,11 @@
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-    self.window.rootViewController = [[ViewController alloc] init];
+
+    InicioViewController *inicio = [[InicioViewController alloc] init];
+    UINavigationController *navegacion = [[UINavigationController alloc] initWithRootViewController:inicio];
+
+    self.window.rootViewController = navegacion;
     [self.window makeKeyAndVisible];
 }
 
