@@ -1,0 +1,41 @@
+name: Build y capturas
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar herramientas
+        run: |
+          brew install xcodegen
+          brew install chargepoint/xcparse/xcparse
+
+      - name: Generar proyecto Xcode
+        run: xcodegen generate
+
+      - name: Compilar y correr pruebas de UI
+        run: |
+          xcodebuild test \
+            -project SabiasQue.xcodeproj \
+            -scheme SabiasQue \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -resultBundlePath TestResults.xcresult
+
+      - name: Extraer capturas de pantalla
+        if: always()
+        run: |
+          mkdir -p capturas
+          xcparse screenshots TestResults.xcresult capturas/ || true
+
+      - name: Subir capturas como artefacto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas-sabiasque
+          path: capturas
