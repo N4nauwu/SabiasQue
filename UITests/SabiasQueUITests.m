@@ -9,9 +9,14 @@
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app launch];
 
-    [self adjuntarCaptura:app nombre:@"01_pantalla_inicial"];
+    [self adjuntarCaptura:app nombre:@"01_pantalla_inicio"];
 
-    // a) Selecciona una de las tres categorías
+
+    XCUIElement *botonComenzar = app.buttons[@"COMENZAR"];
+    XCTAssertTrue([botonComenzar waitForExistenceWithTimeout:5.0], @"No se encontró el botón COMENZAR");
+    [botonComenzar tap];
+
+   
     XCUIElement *botonCine = app.buttons[@"Cine"];
     XCTAssertTrue([botonCine waitForExistenceWithTimeout:5.0], @"No se encontró el botón Cine");
     [botonCine tap];
