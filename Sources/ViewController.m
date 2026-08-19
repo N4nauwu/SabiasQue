@@ -105,10 +105,7 @@
     UILayoutGuide *guide = self.view.safeAreaLayoutGuide;
 
     [NSLayoutConstraint activateConstraints:@[
-        [self.tituloLabel.topAnchor constraintEqualToAnchor:guide.topAnchor constant:24],
-        [self.tituloLabel.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor constant:20],
-        [self.tituloLabel.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor constant:-20],
-
+    
         [stackCategorias.topAnchor constraintEqualToAnchor:guide.topAnchor constant:24],
         [stackCategorias.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor constant:20],
         [stackCategorias.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor constant:-20],
